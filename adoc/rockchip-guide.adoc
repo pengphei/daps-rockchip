@@ -55,6 +55,58 @@ http://www.rock-chips.com/[瑞芯微]的芯片是国内开发板使用比较多�
 * https://github.com/rockchip-linux/rkscript[rkscript]，为Buildroot提供的软件启动脚本，udev rules 等脚本和配置文件。
 * https://github.com/rockchip-linux/distro[distro]，基于Buildroot的全志定制库/软件的仓库，与Buildroot一道搭成全志自主的定制Linux版本，或者应该叫发行版。**之前也常常基于Buildroot定制系统，不过因为Buildroot本身并不支持包管理，已经放弃了这种系统构建，不过这个系统目前是构建和移植门槛最低的系统，如果会使用内核构建配置，也就会使用它来构建。**
 
+[[art.rock.tools.rootfs]]
+=== rootfs处理工具
+
+rootfs 是指标准的Linux系统所需要的目录结构，库文件，系统服务等等构成的集合，也是我们的应用程序执行所依赖的基础环境。
+
+[[art.rock.tools.rootfs.build]]
+=== rootfs镜像生成
+
+对于 rootfs，其生成过程参考 https://github.com/rockchip-linux/rk-rootfs-build/blob/master/mk-image.sh[镜像构建脚本]，分为如下5个步骤：
+
+. 创建二进制文件 rootfs.img。
++
+[source]
+----
+dd if=/dev/zero of=rootfs.img bs=1M count=0 seek=4000
+----
++
+. 将二进制文件 rootfs.img 格式化为 ext4 文件系统。
++
+[source]
+----
+mkfs.ext4 rootfs.img
+----
++
+. 挂载 rootfs.img 文件为文件分区。
++
+[source]
+----
+sudo mkdir -p /mnt/rootfs
+sudo mount rootfs.img /mnt/rootfs
+----
++
+. 将生成的 rootfs 文件系统拷贝到 rootfs.img 的分区
++
+[source]
+----
+sudo cp -rfp rootfs/* /mnt/rootfs
+sudo umount /mnt/rootfs
+----
++
+. rootfs.img 后期处理
++
+[source]
+----
+sudo e2fsck -p -f rootfs.img
+sudo resize2fs -M rootfs.img
+----
+
+
+
+[[art.rock.tools.rootfs.burn]]
+=== rootfs镜像烧录
 
 [[art.rock.boot]]
 == u-boot 引导
@@ -71,6 +123,8 @@ http://www.rock-chips.com/[瑞芯微]的芯片是国内开发板使用比较多�
 [[art.rock.system.buildroot]]
 === 深度定制-Buildroot
 
+[[art.rock.system.yocto]]
+=== 深度定制-Yocto
 
 [[art.rock.system.debian]]
 === 发行版的魅力-Debian
@@ -101,6 +155,8 @@ http://www.rock-chips.com/[瑞芯微]的芯片是国内开发板使用比较多�
 [[art.rock.app.launch]]
 === 自启动程序
 
+[[art.rock.minigui]]
+== minigui 开发
 
 [appendix]
 [[art.rock.appendix]]
