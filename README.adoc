@@ -1,0 +1,14 @@
+= daps-rockchip
+
+本项目非 rockchip 官方项目，纯属个人爱好。
+
+根据本仓库中文档进行项目开发时，切记多学习，多尝试。因为文档中的实践，有自己的执行环境，并且跟个人理解有关。
+
+== 文档生成
+
+1. 使用 suse 风格生成文档：
+
+[source,shell]
+----
+daps --styleroot="/usr/share/xml/docbook/stylesheet/suse2013 -d DC-rockchip-guide  pdf
+----
