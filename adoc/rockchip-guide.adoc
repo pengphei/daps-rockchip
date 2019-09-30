@@ -1,0 +1,110 @@
+[[art.rock.guide]]
+= Rockchip 开发指南
+韩鹏飞 <pengphei@foxmail.com>
+:Revision: 0
+:toc:
+:icons: font
+:numbered:
+:lang: zh-CN
+
+ifdef::env-github[]
+//Admonitions
+:tip-caption: :bulb:
+:note-caption: :information_source:
+:important-caption: :heavy_exclamation_mark:
+:caution-caption: :fire:
+:warning-caption: :warning:
+endif::[]
+
+// Entities
+:adoc: AsciiDoc
+:db: DocBook
+:daps: DAPS
+
+http://www.rock-chips.com/[瑞芯微]的芯片是国内开发板使用比较多的芯片，瑞芯微的工具，源码，内核，包括所供系统的说明跟每一个国产系统所提供的内容一样，缺乏完整性，详细的介绍，这对于使用瑞芯微芯片的开发板的开发者来说不够友好，出现问题的解决难度比较大。根据我一直以来从事工作的理念，编写本指南希望能够提升自己对瑞芯微的芯片使用，以及有赖于此的软件开发的能力，也希望可以帮到其他使用瑞芯微芯片的开发者，爱好者。
+
+对于从事嵌入式开发的从业人员，拿到一个开发板，或者从事一个项目开发，需要了解和解决的问题包括三个层面：
+
+1. 系统引导BootLoader和内核。
+2. 操作系统裁剪、优化和定制。
+3. 软件应用开发。
+
+鉴于此，本指南也分别就三个方面，对瑞芯微芯片，开发板的使用进行详细的介绍。
+
+[[art.rock.intro]]
+== 开篇说明
+
+本指南所有内容的参考，均来源于互联网资料，以及自己多年从事嵌入式开发的经验。
+
+编写和构建本文档的工具来源于 openSUSE 提供的开源文档撰写和发布工具 https://opensuse.github.io/daps/[daps] 。所编写的文档格式为 `asciidoc` 。
+
+[[art.rock.tools]]
+== 开发工具
+
+* https://github.com/rockchip-linux/docs[doc]，瑞芯微开发文档相关。
+* https://github.com/rockchip-linux/kernel[kernel]，瑞芯微定制开发内核。
+* https://github.com/rockchip-linux/rkwifibt[rkwifibt]，瑞芯微用于定制内核的wifi和蓝牙的驱动和固件。
+* https://github.com/rockchip-linux/bluez-alsa[bluez-alsa]，蓝牙音频后端程序，在RK3308-CC这个板子系统搭建跑起来之后，这个可以用作蓝牙的语音输入处理后端。
+* https://github.com/rockchip-linux/u-boot[uboot]，瑞芯微定制开发bootloader。
+* https://github.com/rockchip-linux/bin[bin]，似乎是用于 https://www.op-tee.org[optee] 的用户层库，这是业界使用比较多的基于trustzone实现的可信计算框架。
+* https://github.com/rockchip-linux/rkbin[rkbin]，固件和二进制工具。
+* https://github.com/rockchip-linux/tools[tools]，瑞芯微开发工具。
+* https://github.com/rockchip-linux/rk-rootfs-build[rk-rootfs-build]，瑞芯微rootfs构建脚本。
+* https://github.com/rockchip-linux/minigui[minigui]，这个是一个微型GUI的神器，不过RK3308目前用不上。
+* https://github.com/rockchip-linux/buildroot[buildroot]，全志定制 Buildroot 系统，添加了自定义的 gstreamer ，系统配置，rkmedia/QLauncher/libMali 等内容，对希望立马可以为客户提供SDK的开发板定制厂商来说，这简直就是福音。
+* https://github.com/rockchip-linux/rkscript[rkscript]，为Buildroot提供的软件启动脚本，udev rules 等脚本和配置文件。
+* https://github.com/rockchip-linux/distro[distro]，基于Buildroot的全志定制库/软件的仓库，与Buildroot一道搭成全志自主的定制Linux版本，或者应该叫发行版。**之前也常常基于Buildroot定制系统，不过因为Buildroot本身并不支持包管理，已经放弃了这种系统构建，不过这个系统目前是构建和移植门槛最低的系统，如果会使用内核构建配置，也就会使用它来构建。**
+
+
+[[art.rock.boot]]
+== u-boot 引导
+
+[[art.rock.kernel]]
+== 内核
+
+[[art.rock.system]]
+== 系统定制
+
+[[art.rock.system.android]]
+=== Android
+
+[[art.rock.system.buildroot]]
+=== 深度定制-Buildroot
+
+
+[[art.rock.system.debian]]
+=== 发行版的魅力-Debian
+
+[[art.rock.system.port]]
+=== 移花接木
+
+[[art.rock.system.port.alpine]]
+==== 最小为王-Alpine
+
+[[art.rock.system.port.opensuse]]
+==== 稳定至上-openSUSE
+
+[[art.rock.system.port.ubuntu]]
+==== 颜值-Ubuntu
+
+[[art.rock.app]]
+== 应用开发
+
+[[art.rock.app.qt]]
+=== 图形界面程序
+
+
+[[art.rock.app.ai]]
+=== 人工智能
+
+
+[[art.rock.app.launch]]
+=== 自启动程序
+
+
+[appendix]
+[[art.rock.appendix]]
+== 附录
+
+=== 参考文档
+
