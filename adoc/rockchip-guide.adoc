@@ -58,7 +58,38 @@ http://www.rock-chips.com/[瑞芯微]的芯片是国内开发板使用比较多�
 [[art.rock.tools.rootfs]]
 === rootfs处理工具
 
-rootfs 是指标准的Linux系统所需要的目录结构，库文件，系统服务等等构成的集合，也是我们的应用程序执行所依赖的基础环境。
+rootfs 是指标准的Linux系统所需要的目录结构，库文件，系统服务等等构成的集合，也是我们的应用程序执行所依赖的基础环境。为了对 rootfs 进行构建和烧录，我们需要用到如下工具：
+
+|===
+|工具 |来源 |描述
+
+|`dd`
+|系统自带
+| 
+
+|`mkfs.ext4`
+|系统自带
+| 
+
+|`mount/umount`
+|系统自带
+| 
+
+|`mkdir`
+|系统自带
+| 
+
+|`e2fsck`
+|系统自带
+| 
+
+|`resize2fs`
+|系统自带
+| 
+
+|===
+
+
 
 [[art.rock.tools.rootfs.build]]
 === rootfs镜像生成
@@ -102,7 +133,6 @@ sudo umount /mnt/rootfs
 sudo e2fsck -p -f rootfs.img
 sudo resize2fs -M rootfs.img
 ----
-
 
 
 [[art.rock.tools.rootfs.burn]]
